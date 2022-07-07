@@ -1,0 +1,77 @@
+*{
+    margin: 0;
+}
+
+.container {
+    margin: auto;
+}
+
+.register {
+    text-align: center;
+    width: 600px;
+    margin: auto;
+}
+
+.input {
+    width: 600px;
+    height: 30px;
+    margin: 5px;
+}
+
+.small {
+    display: flex;
+    margin: auto;
+    justify-content: space-between;
+}
+
+.big {
+    display: flex;
+    width: 600px;
+    justify-content: space-between;
+}
+
+.terms {
+    display: flex;
+    margin-top: 10px;
+}
+
+#terms2{
+    font-size: small;
+}
+#check {
+    flex:1;
+    font-weight: bold;
+}
+
+#btn1 {
+    background-color: cornflowerblue;
+    padding: 5px;
+    border-radius: 2px;
+}
+
+.cheBox {
+    display: flex;
+    align-items: center;
+}
+
+#check {
+    width: 100px;
+}
+
+.btnRegister {
+    height: 60px;
+    background-color: cornflowerblue;
+    color: white;
+    width: 250px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.btnSignIn {
+    height: 60px;
+    background-color: greenyellow;
+    color: white;
+    width: 250px;
+    border-radius: 5px;
+    margin-top: 10px;
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="style.css">
+    <script async src="./script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <form class="register" action="register">
+            <h1>Sign Up</h1>
+            <div class="small">
+                <input class="input" type="text" name="first_name" id="firstName" placeholder="First Name">
+                <input class="input" type="text" name="last_name" id="lastName" placeholder="Last Name">
+            </div>
+
+            <div class="big">
+                <input class="input" type="text" name="mobile_No" id="mobileNum" placeholder="Mobile No.">
+            </div>
+
+            <div class="big">
+                <input class="input" type="text" name="email_address" id="emailAddress" placeholder="Email Address">
+            </div>
+
+            <div  class="small">
+                <input class="input" type="password" name="password" id="password" placeholder="Password">
+                <input class="input" type="password" name="confirm_password" id="confirmpassword" placeholder="Confirm Password">
+            </div>
+
+            <div class="terms">
+                <div class="cheBox">
+                    <input type="checkbox" name="check" id="checkBox">
+                    <label id="check" for="check">I Agree</label>
+                </div>
+                <div>
+                    <p id="terms2">By clicking <span id="btn1">Register</span>, you agree to the <a href="URL">Terms and Conditions</a> set out by this site, including our Cookie Use</p>
+                </div>
+            </div>
+
+            <div class="small">
+                <input class="btnRegister" type="submit" value="Register">
+                <input class="btnSignIn" type="submit" value="Sign In">
+            </div>
+        </form>
+
+    </div>
+
+</body>
+</html>
