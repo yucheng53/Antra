@@ -27,13 +27,13 @@ function palin(str) {
 console.log(palin(""));
 
 //3.Combinations
-function combi(str) {
-    var arr = str.split("");
+function combi(arr) {
     var arr2 = [];
     for(let i = 0; i < arr.length;i++) {
-        for(let j = i; j < arr.length;j++ ){
-            arr2.push(arr[j])
+        for(let j = i+1; j < arr.length;j++ ){
+            arr2.push(arr.slice(i,j+1));
         }
-
     }
+    return arr2;
 }
+console.log(combi("hello"));
