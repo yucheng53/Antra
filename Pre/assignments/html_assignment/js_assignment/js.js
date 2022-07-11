@@ -7,16 +7,6 @@ function reverse(num)
 }
 console.log(reverse(32243));
 
-// function reverse2(num) {
-//     num = num + "";
-//     var str2 = "";
-//     for(let i = num.length-1 ;i>=0;i--) {
-//         str2 += num[i];
-//     }
-//     return str2;
-// }
-// console.log(Number(reverse2(12345678)));
-
 //2.Check palindrome
 function palin(str) {
     if(str.split("").reverse().join("") === str) {
@@ -30,13 +20,13 @@ console.log(palin(""));
 function combi(str) {
     var arr = [];
     for(let i = 0; i < str.length;i++) {
-        for(let j = i+1; j < str.length;j++ ){
+        for(let j = i; j < str.length;j++ ){
             arr.push(str.slice(i,j+1));
         }
     }
     return arr;
 }
-console.log(combi("hello"));
+console.log(combi("dog"));
 
 //4.alphabetical order
 function alpha(str) {
@@ -214,6 +204,71 @@ console.log(unique("thequickbrownfoxjumpsoverthelazydog"));
 
 //17. occurrences
 function occur(str) {
-    let result = {};
-    for
+    for (let i = 0; i < str.length; i++) {
+        let count = 0;
+        for(let j = 0; j < str.length; j++) {
+            if(str[i] == str[j] && i > j) {
+                break;
+            }
+            if(str[i] == str[j]) {
+                count ++;
+            }
+        }
+        if(count > 0) {
+            console.log( `${str[i]} : ${count}`);
+        }
+    }
+}
+occur("hello");
+
+//18. binary search
+function binary(arr, val, start, end) {
+    if (start > end) return false;
+    let mid = Math.floor((start + end)/2);
+    if(arr[mid] === val) {
+        return true;
+    }
+    if(arr[mid] > val) {
+        return binary(arr,val, start, mid-1)
+    }
+    else {
+        return binary(arr, val, mid+1, end);
+    }
+}
+console.log(binary([1,3,5,7,8,9], 6, 0, 5));
+
+//19. array elements larger than a number
+function larger(arr, num) {
+    let newArr = [];
+    for(let i of arr) {
+        if(i > num) {
+            newArr.push(i);
+        }
+    }
+    return newArr;
+}
+console.log(larger([1,2,43,32,12,34,7,9,0], 5));
+
+//20. random id
+function generateId(length)
+{
+    let string = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    var result = "";
+    for(var i=0; i < length; i++ ) {  
+        result += string[Math.floor(Math.random() * string.length)];
+    }
+    return result;
+}
+console.log(generateId(10));
+
+//21. all possible subset of an array
+function subset(arr, num) {
+    if(num > arr.length) {
+        return false;
+    }
+}
+
+//26.longest substring
+function substr(str) {
+    
 }
