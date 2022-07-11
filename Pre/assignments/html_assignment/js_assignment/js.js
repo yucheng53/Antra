@@ -257,20 +257,15 @@ function generateId(length) {
 console.log(generateId(10));
 
 // 21. Write a JavaScript function to get all possible subset with a fixed length (for example 2) combinations in an array.
-// Sample array: [1, 2, 3] and subset length is 2
-// Expected output: [[2, 1], [3, 1], [3, 2]]
-//
-function combinations(array, n) {
-    array2 = new Array(1 << array.length)
+function combinations(arr, n) {
+    const arr2 = new Array(1 << arr.length)
         .fill()
-        .map((e1, i) => array.filter((e2, j) => i & (1 << j)));
-    return array2.filter((a) => a.length == n);
+        .map((e1, i) => arr.filter((e2, j) => i & (1 << j)));
+    return arr2.filter((a) => a.length == n);
 }
 
 /*
 22. Write a JavaScript function that accepts two arguments, a string and a letter and the function will count the number of occurrences of the specified letter within the string. 
-Sample arguments: 'microsoft.com', 'o' 
-Expected output: 3 
 */
 const Count = (str, letter) => {
     alert(str.split(letter).length - 1);
@@ -278,8 +273,6 @@ const Count = (str, letter) => {
 
 /*
 23. Write a JavaScript function to find the first not repeated character. 
-Sample arguments: 'abacddbec' 
-Expected output: 'e' 
 */
 function firstNRC(string) {
     for (var i = 0; i < string.length; i++) {
@@ -293,9 +286,6 @@ function firstNRC(string) {
 
 /*
 24. Write a JavaScript function to apply Bubble Sort algorithm. 
-Note: According to wikipedia "Bubble sort, sometimes referred to as sinking sort, is a simple sorting algorithm that works by repeatedly stepping through the list to be sorted, comparing each pair of adjacent items and swapping them if they are in the wrong order". 
-Sample array: [12, 345, 4, 546, 122, 84, 98, 64, 9, 1, 3223, 455, 23, 234, 213]
-Expected output: [3223, 546, 455, 345, 234, 213, 122, 98, 84, 64, 23, 12, 9, 4, 1]
 */
 function bubbleSort(arr) {
     for (var i = 0; i < arr.length; i++) {
@@ -312,18 +302,16 @@ function bubbleSort(arr) {
 
 /*
 25. Write a JavaScript function that accept a list of country names as input and returns the longest country name as output. 
-Sample function: Longest_Country_Name(["Australia", "Germany", "United States of America"])
-Expected output: "United States of America"
 */
-const Longest_Country_Name = ([...a]) => {
+const longest = ([...a]) => {
     let array = [...a];
-    let comparsionString = "";
+    let compar = "";
     array.map((v) => {
-        if (v.length > comparsionString.length) {
-            comparsionString = v;
+        if (v.length > compar.length) {
+            compar = v;
         }
     });
-    return comparsionString;
+    return compar;
 };
 
 /*
@@ -354,8 +342,6 @@ const longestSubstring = (str) => {
 
 /*
 27. Write a JavaScript function that returns the longest palindrome in a given string. 
-Note: According to Wikipedia "In computer science, the longest palindromic substring or longest symmetric factor problem is the problem of finding a maximum-length contiguous substring of a given string that is also a palindrome. For example, the longest palindromic substring of "bananas" is "anana". The longest palindromic substring is not guaranteed to be unique; for example, in the string "abracadabra", there is no palindromic substring with length greater than three, but there are two palindromic substrings with length three, namely, "aca" and "ada".
-In some applications it may be necessary to return all maximal palindromic substrings (that is, all substrings that are themselves palindromes and cannot be extended to larger palindromic substrings) rather than returning only one substring or returning the maximum length of a palindromic substring.
 */
 const longestPalindrome = (str) => {
     var max_length = 0,
@@ -387,7 +373,7 @@ const longestPalindrome = (str) => {
 28. Write a JavaScript program to pass a 'JavaScript function' as parameter. 
 */
 
-function name(name) {
+function func(name) {
     alert(name);
 }
 
