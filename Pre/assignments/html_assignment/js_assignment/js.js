@@ -257,62 +257,95 @@ function generateId(length) {
 console.log(generateId(10));
 
 // 21. Write a JavaScript function to get all possible subset with a fixed length (for example 2) combinations in an array.
-function combinations(arr, n) {
-    const arr2 = new Array(1 << arr.length)
-        .fill()
-        .map((e1, i) => arr.filter((e2, j) => i & (1 << j)));
-    return arr2.filter((a) => a.length == n);
+function subset(arra, arra_size)
+{
+var result_set = [], 
+    result;
+for(var x = 0; x < Math.pow(2, arra.length); x++) {
+    result = [];
+    i = arra.length - 1; 
+    do
+    {
+    if( (x & (1 << i)) !== 0)
+        {
+            result.push(arra[i]);
+        }
+    }  while(i--);
+
+if( result.length >= arra_size)
+    {
+        result_set.push(result);
+    }
 }
+
+return result_set; 
+}
+
+console.log(subset([1, 2, 3], 2));
 
 /*
 22. Write a JavaScript function that accepts two arguments, a string and a letter and the function will count the number of occurrences of the specified letter within the string. 
 */
-const Count = (str, letter) => {
-    alert(str.split(letter).length - 1);
+function countLet(str, letter) {
+    let count = 0;
+    for(let i = 0; i < str.length; i++) {
+        if(str[i] === letter) {
+            count ++;
+        }
+    }
+    return count;
 };
+console.log(countLet("hello", "l"));
 
 /*
 23. Write a JavaScript function to find the first not repeated character. 
 */
-function firstNRC(string) {
-    for (var i = 0; i < string.length; i++) {
-        var c = string.charAt(i);
-        if (string.indexOf(c) == i && string.indexOf(c, i + 1) == -1) {
-            return c;
+function firstNotRep(string) {
+    for(let i = 0; i < string.length; i++) {
+        let count = 1;
+        for(let j = 0; j < string.length; j++) {
+            if(string[i] === string[j] && i != j){
+                count ++;
+                break;
+            }
+        }
+        if(count === 1) {
+            return string[i];
         }
     }
-    return null;
 }
+console.log(firstNotRep("abacddbec"));
 
 /*
 24. Write a JavaScript function to apply Bubble Sort algorithm. 
 */
 function bubbleSort(arr) {
-    for (var i = 0; i < arr.length; i++) {
-        for (var j = 0; j < arr.length - i - 1; j++) {
-            if (arr[j] < arr[j + 1]) {
-                var temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
-            }
+    for(let i = 0; i < arr.length-1; i++) {
+        for(let j = 0; j < arr.length-1-i; j++)
+        if(arr[j] < arr[j+1]) {
+            let temp = arr[j];
+            arr[j] = arr[j+1];
+            arr[j+1] = temp;
         }
     }
     return arr;
 }
+console.log(bubbleSort([234, 43, 55, 63,  5, 6, 235, 547]));
 
 /*
 25. Write a JavaScript function that accept a list of country names as input and returns the longest country name as output. 
 */
-const longest = ([...a]) => {
-    let array = [...a];
-    let compar = "";
-    array.map((v) => {
-        if (v.length > compar.length) {
-            compar = v;
+function longestCountry(arr) {
+    let result = arr[0];
+    for (let i of arr) {
+        if(i.length > result.length) {
+            result = i;
         }
-    });
-    return compar;
-};
+    }
+    return result;
+}
+console.log(longestCountry(["Australia", "Germany", "United States of America"]));
+
 
 /*
 26. Write a JavaScript function to find longest substring in a given a string without repeating characters
