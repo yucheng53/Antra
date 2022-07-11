@@ -270,5 +270,14 @@ function subset(arr, num) {
 
 //26.longest substring
 function substr(str) {
-    
+
 }
+
+//29. get the function name. 
+function tst() {
+    console.log("Run");
+}
+function getName(func) {
+    return func.name;
+}
+console.log(getName(tst()));
