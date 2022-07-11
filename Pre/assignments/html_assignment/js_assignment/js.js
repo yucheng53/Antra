@@ -350,47 +350,72 @@ console.log(longestCountry(["Australia", "Germany", "United States of America"])
 /*
 26. Write a JavaScript function to find longest substring in a given a string without repeating characters
 */
-function lengthOfLongestSubstring(s) {
-    let count = 0;
+const longestSub = (str) => {
     let longestArr = [];
-    let tempArr = [];
-    let strArr = s.split("");
-    if (strArr.length !== 0) {
-        tempArr[0] = strArr[0];
-        longestArr[0] = strArr[0];
-        for (let j = 0; j < strArr.length; j++) {
-            for (let i = j + 1; i < strArr.length; i++) {
-                if (tempArr.includes(strArr[i])) {
-                    if (tempArr.length >= longestArr.length) {
-                        longestArr = tempArr;
-                        tempArr = [];
-                        count = 0;
-                        tempArr[count] = strArr[j + 1];
-                        break;
-                    } 
-                    else {
-                        tempArr = [];
-                        count = 0;
-                        tempArr[count] = strArr[j + 1];
-                        break;
-                    }
-                } 
-                else {
-                    count++;
-                    tempArr[count] = strArr[i];
-                }
+    let maxArr = [];
+    console.log(str.slice(0,2).includes(str[3]));
+    for(let i = 0 ; i < str.length; i++) {
+        let tempStr = str[i];
+        let tempMax = 1;
+        for(let j=i+1; j < str.length; j++) {
+            if(str.slice(i,j).includes(str[j])){
+                break;
             }
+            tempStr += str[j];
+            tempMax ++;
         }
-    } 
-    else {
-        return false;
+        longestArr.push(tempStr);
+        maxArr.push(tempMax);
     }
-    if (tempArr.length >= longestArr.length) {
-        longestArr = tempArr;
+    maxArr.sort(function(a,b){return b - a});
+    for(let i = 0; i < longestArr.length; i++) {
+        if(longestArr[i].length === maxArr[0]) {
+            return longestArr[i];
+        }
     }
-    return longestArr.join("");
-};
-console.log(lengthOfLongestSubstring("abcddbcasrrrsbad"));
+}
+console.log(longestSub("abcddbcasrrrsbacdef"));
+// function lengthOfLongestSubstring(s) {
+//     let count = 0;
+//     let longestArr = [];
+//     let tempArr = [];
+//     let strArr = s.split("");
+//     if (strArr.length !== 0) {
+//         tempArr[0] = strArr[0];
+//         longestArr[0] = strArr[0];
+//         for (let j = 0; j < strArr.length; j++) {
+//             for (let i = j + 1; i < strArr.length; i++) {
+//                 if (tempArr.includes(strArr[i])) {
+//                     if (tempArr.length >= longestArr.length) {
+//                         longestArr = tempArr;
+//                         tempArr = [];
+//                         count = 0;
+//                         tempArr[count] = strArr[j + 1];
+//                         break;
+//                     } 
+//                     else {
+//                         tempArr = [];
+//                         count = 0;
+//                         tempArr[count] = strArr[j + 1];
+//                         break;
+//                     }
+//                 } 
+//                 else {
+//                     count++;
+//                     tempArr[count] = strArr[i];
+//                 }
+//             }
+//         }
+//     } 
+//     else {
+//         return false;
+//     }
+//     if (tempArr.length >= longestArr.length) {
+//         longestArr = tempArr;
+//     }
+//     return longestArr.join("");
+// };
+// console.log(lengthOfLongestSubstring("abcddbcasrrrsbad"));
 
 /*
 27. Write a JavaScript function that returns the longest palindrome in a given string. 
@@ -434,6 +459,9 @@ function callFunction(func, str) {
 callFunction(func,"hello");
 
 //29. get the function name.
+function tst() {
+    console.log("Run");
+}
 function getName() {
     return getName.name;
 }
