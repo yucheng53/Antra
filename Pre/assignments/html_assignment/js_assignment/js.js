@@ -350,75 +350,94 @@ console.log(longestCountry(["Australia", "Germany", "United States of America"])
 /*
 26. Write a JavaScript function to find longest substring in a given a string without repeating characters
 */
-const longestSubstring = (str) => {
-    var max_length = 0,
-        Longestsubstring = "";
-    var strChar = str.split("");
-    var result = "",
-        result2 = [];
-    for (let i = 0; i < strChar.length; i++) {
-        if (strChar[i] != strChar[i - 1]) {
-            result += strChar[i];
-            result2.push(result);
-        } else {
-            result = "";
+function lengthOfLongestSubstring(s) {
+    let count = 0;
+    let longestArr = [];
+    let tempArr = [];
+    let strArr = s.split("");
+    if (strArr.length !== 0) {
+        tempArr[0] = strArr[0];
+        longestArr[0] = strArr[0];
+        for (let j = 0; j < strArr.length; j++) {
+            for (let i = j + 1; i < strArr.length; i++) {
+                if (tempArr.includes(strArr[i])) {
+                    if (tempArr.length >= longestArr.length) {
+                        longestArr = tempArr;
+                        tempArr = [];
+                        count = 0;
+                        tempArr[count] = strArr[j + 1];
+                        break;
+                    } 
+                    else {
+                        tempArr = [];
+                        count = 0;
+                        tempArr[count] = strArr[j + 1];
+                        break;
+                    }
+                } 
+                else {
+                    count++;
+                    tempArr[count] = strArr[i];
+                }
+            }
         }
+    } 
+    else {
+        return false;
     }
-    let compareString = "";
-    result2.map((v, i) => {
-        if (v.length > compareString.length) {
-            compareString = v;
-        }
-    });
-    return compareString;
+    if (tempArr.length >= longestArr.length) {
+        longestArr = tempArr;
+    }
+    return longestArr.join("");
 };
+console.log(lengthOfLongestSubstring("abcddbcasrrrsbad"));
 
 /*
 27. Write a JavaScript function that returns the longest palindrome in a given string. 
 */
-const longestPalindrome = (str) => {
-    var max_length = 0,
-        maxPalindrome = [],
-        result = [];
-    for (var i = 0; i < str.length; i++) {
-        var substr = str.substr(i, str.length);
-        for (let x = substr.length; x > 0; x--) {
-            var substring_substring = substr.substr(0, x);
-            if (substring_substring <= 1) continue;
-            if (
-                isPalindrome(substring_substring) &&
-                substring_substring.length >= max_length
-            ) {
-                max_length = substring_substring.length;
-                maxPalindrome.push(substring_substring);
-            }
+function longestPalSubstr(str) {
+    let n = str.length; 
+    if (n < 2) return n; 
+    let maxLength = 1,
+    start = 0;
+    let low, high;
+    for (let i = 0; i < n; i++) {
+        low = i - 1;
+        high = i + 1;
+        while (high < n && str[high] == str[i])
+        high++;
+        while (low >= 0 && str[low] == str[i])
+        low--;
+        while (low >= 0 && high < n && str[low] == str[high]) {
+            low--;
+            high++;
+        }
+        let length = high - low - 1;
+        if (maxLength < length) {
+        maxLength = length;
+        start = low + 1;
         }
     }
-    maxPalindrome.map((v, i) => {
-        if (v.length == max_length) {
-            result.push(v);
-        }
-    });
-    return result;
-};
+    return str.substring(start, maxLength + start);
+}
+console.log(longestPalSubstr("abaddsljdsljalssasssjdlsjdl"))
 
 /*
 28. Write a JavaScript program to pass a 'JavaScript function' as parameter. 
 */
-
-function func(name) {
-    alert(name);
+function func(str) {
+    console.log(str);
 }
-
-function callFunction(func, myname) {
-    func(myname);
+function callFunction(func, str) {
+    func(str);
 }
+callFunction(func,"hello");
 
 //29. get the function name.
 function tst() {
     console.log("Run");
 }
-function getName(func) {
-    return func.name;
+function getName() {
+    return getName.name;
 }
-console.log(getName(tst()));
+console.log(getName());
