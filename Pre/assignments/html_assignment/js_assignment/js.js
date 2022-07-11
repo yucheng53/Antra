@@ -100,3 +100,120 @@ function vowel(str) {
 console.log(vowel("The quick brown fox"))
 
 //8.check prime or not
+function prime(num) {
+    if(num < 2) {
+        return false;
+    }
+    if(num === 2) {
+        return true;
+    }
+    else {
+        for(let i=2; i<num; i++) {
+            if(num % i === 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+console.log(prime(4));
+
+//9.return type
+function type(var1) {
+    return typeof(var1);
+}
+console.log(type("hello"));
+
+//10.n * n matirx
+function matrix(num) {
+
+    for(let i = 0; i < num; i++) {
+        var str = "";
+        for(let j = 0; j < num; j++) {
+            str += "*";
+        }
+        console.log(str);
+    }
+}
+matrix(4);
+
+//11. second lowest and greatest numbers;
+function secon(arr) {
+    var result = [];
+    arr.sort((a,b)=> {return a - b} );
+    result.push(arr[1]);
+    result.push(arr[arr.length-2]);
+    return result;
+}
+console.log(secon([1,5,2,4,3,8,6]));
+
+//12. perfect numbers
+function perfec(num) {
+    if(num < 1) return false;
+    var arr = []
+    var sum = 0;
+    for(let i = 1; i < num; i++) {
+        if( num % i === 0) {
+            arr.push(i);
+        }
+    }
+    for(let j = 0; j < arr.length; j++) {
+        sum += arr[j];
+    }
+    if(sum === num) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+console.log(perfec(496));
+
+//13. find factors
+function factor(num) {
+    var factors = [];
+    for(let i = 1; i <= num; i++) {
+        if(num % i === 0 ) {
+            factors.push(i);
+        }
+    }
+    return factors;
+}
+console.log(factor(10));
+
+//14. convert an amount to coins
+function toCoins(num, arr) {
+    var result = [];
+    for(let i = 0; i < arr.length; i++) {
+        for(let j = 0; j < parseInt(num/arr[i]); j++) {
+            result.push(arr[i]);
+        }
+        num = num % arr[i];
+    }
+    return result;
+}
+console.log(toCoins(46,[25,10,5,2,1]));
+
+//15. compute the value of bn
+function power(b, n) {
+        return Math.pow(b,n)
+    }
+console.log(power(-2.5,3));
+
+//16. extarct unique characters from a string
+const unique = (str) => {
+    var result = "";
+    for(let i = 0; i < str.length; i++) {
+        if(!result.includes(str[i])){
+            result += str[i];
+        } 
+    }
+    return result;
+}
+console.log(unique("thequickbrownfoxjumpsoverthelazydog"));
+
+//17. occurrences
+function occur(str) {
+    let result = {};
+    for
+}
