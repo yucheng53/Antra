@@ -434,9 +434,6 @@ function callFunction(func, str) {
 callFunction(func,"hello");
 
 //29. get the function name.
-function tst() {
-    console.log("Run");
-}
 function getName() {
     return getName.name;
 }
