@@ -1,12 +1,17 @@
-// 1.Reverse a number
+// 1. Write a JavaScript function that reverse a number. 
+// Example x = 32243;
+// Expected Output: 34223 
 function reverse(num) {
     num = num + "";
     var num2 = Number(num.split("").reverse().join(""));
     return num2;
+    // +[...(num + "")].reverse().join("")
 }
 console.log(reverse(32243));
 
-//2.Check palindrome
+// 2. Write a JavaScript function that checks whether a passed string is palindrome or not? 
+// A palindrome is word, phrase, or sequence that reads the same backward as forward, e.g., madam or nurses run.
+
 function palin(str) {
     if (str.split("").reverse().join("") === str) {
         return true;
@@ -271,16 +276,13 @@ for(var x = 0; x < Math.pow(2, arra.length); x++) {
             result.push(arra[i]);
         }
     }  while(i--);
-
 if( result.length >= arra_size)
     {
         result_set.push(result);
     }
 }
-
 return result_set; 
 }
-
 console.log(subset([1, 2, 3], 2));
 
 /*
