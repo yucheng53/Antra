@@ -7,36 +7,34 @@ const state = {
     f: "forEach",
     g: "gesdrwesf"
 };
-var allAlpha = [];
-var allWords = [];
 var alpha = document.getElementById("alpha");
 var words = document.getElementById("word");
 
-for (let i = 0; i < alpha.options.length; i++) {
-    allAlpha.push(alpha.options[i].value);
+for(let key of Object.keys(state)) {
+    let option = document.createElement("option");
+    option.value = key;
+    option.text = key;
+    alpha.add(option, alpha[alpha.length]);
+}
+for(let val of Object.values(state)) {
+    let option = document.createElement("option");
+    option.value = val;
+    option.text = val;
+    words.add(option, words[words.length]);
 }
 
-for (let i = 0; i < words.options.length; i++) {
-    allWords.push(words.options[i].value);
-}
-function myFunction1 () {
+function handleChange (element) {
     var display = "";
-    for (let i = 0; i < allWords.length; i++) {
-        if(allWords[i][0] === document.getElementById("alpha").value) {
-            display = allWords[i];
-            break;
+        for (let i = 0; i < Object.keys(state).length; i++) {
+            if( element.value === Object.keys(state)[i]) {
+                display = Object.values(state)[i];
+                document.getElementById("word").value = display;
+                break;
+            }
+            else if(element.value === Object.values(state)[i]) {
+                display = Object.keys(state)[i];
+                document.getElementById("alpha").value = display;
+                break;
+            }
         }
     }
-    document.getElementById("word").value = display;
-}
-
-function myFunction2 () {
-    var display = "";
-    for (let i = 0; i < allAlpha.length; i++) {
-        if(allAlpha[i] === document.getElementById("word").value[0]) {
-            display = allAlpha[i];
-            break;
-        }
-    }
-    document.getElementById("alpha").value = display;
-}
