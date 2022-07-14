@@ -10,6 +10,7 @@ const state = {
 var alpha = document.getElementById("alpha");
 var words = document.getElementById("word");
 
+//add options to 2 selects
 for(let key of Object.keys(state)) {
     let option = document.createElement("option");
     option.value = key;
@@ -23,6 +24,7 @@ for(let val of Object.values(state)) {
     words.add(option, words[words.length]);
 }
 
+//onchange handler
 function handleChange (element) {
     var display = "";
         for (let i = 0; i < Object.keys(state).length; i++) {
