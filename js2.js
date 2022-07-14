@@ -26,6 +26,7 @@
 // }
 // Emplyee.prototype = Object.create(Person.prototype);
 // Emplyee.prototype.constructor = Emplyee;
+// Object.setPrototypeOf(Emplyee, Person.prototype)
 
 // Emplyee.prototype.show = function() {
 //   console.log('hello');
@@ -131,3 +132,4 @@
 // };
 // const { age, name: uerName } = obj;
 // console.log(uerName);
+
