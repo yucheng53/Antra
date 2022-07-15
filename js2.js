@@ -124,12 +124,12 @@
 
 //~ destructure ~
 // // import { test } from ''
-// const [tt, b, c, d, e, f] = [1, 2, 4, 6, 12];
-// const obj = {
-//   name: 'David',
-//   age: 12,
-//   title: 'header'
-// };
-// const { age, name: uerName } = obj;
-// console.log(uerName);
+const [tt, b, c, d, e, f] = [1, 2, 4, 6, 12];
+const obj = {
+  name: 'David',
+  age: 12,
+  title: 'header'
+};
+const { age, name: uerName } = obj;
+console.log(uerName);
 
