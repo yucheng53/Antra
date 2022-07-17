@@ -13,17 +13,11 @@ export const Controller = ((model, view) => {
     const rightSlide = () => {
         rightBtn.addEventListener("click", () => {
         moviesContainer.scrollLeft += moviesContainer.clientWidth/4;
-        if(count >= 0 )
-        count++;
-        console.log(count)
-        if(count === 5)  {
-            rightBtn.style.display = "none";
+        if(count >= 0 ) {
+            count++;
         }
-        else {rightBtn.style.display = "flex"};
-        if(count ===0)  {
-            leftBtn.style.display = "none";
-        }
-        else {leftBtn.style.display = "flex"};
+        count===5 ? rightBtn.style.display = "none" :rightBtn.style.display = "flex";
+        count===0 ? leftBtn.style.display = "none" : leftBtn.style.display = "flex";
         });
     }
 
@@ -31,16 +25,11 @@ export const Controller = ((model, view) => {
         leftBtn.addEventListener("click", () => {
             moviesContainer.scrollLeft -= moviesContainer.clientWidth/4;
             console.log(count);
-            if(count >= 0 )
-            {count --};
-            if(count ===0)  {
-                leftBtn.style.display = "none";
+            if(count >= 0 ) {
+                count --;
             }
-            else {leftBtn.style.display = "flex"};
-            if(count === 5)  {
-                rightBtn.style.display = "none";
-            }
-            else {rightBtn.style.display = "flex"};
+            count===5 ? rightBtn.style.display = "none" :rightBtn.style.display = "flex";
+            count===0 ? leftBtn.style.display = "none" : leftBtn.style.display = "flex";
             });
 
     }
