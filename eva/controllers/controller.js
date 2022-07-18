@@ -6,34 +6,26 @@ export const Controller = ((model, view) => {
     var count = 0;
 
     const moviesContainer = document.querySelector(view.domstr.moviesContainer);;
-
     const leftBtn = document.querySelector(view.domstr.leftBtn);
     const rightBtn = document.querySelector(view.domstr.rightBtn);
     
     const rightSlide = () => {
         rightBtn.addEventListener("click", () => {
-        moviesContainer.scrollLeft += moviesContainer.clientWidth/4;
-        if(count >= 0 ) {
+            moviesContainer.scrollLeft += moviesContainer.clientWidth/4;
             count++;
-        }
-        count===5 ? rightBtn.style.display = "none" :rightBtn.style.display = "flex";
-        count===0 ? leftBtn.style.display = "none" : leftBtn.style.display = "flex";
+            count===5 ? rightBtn.style.display = "none" :rightBtn.style.display = "flex";
+            count===0 ? leftBtn.style.display = "none" : leftBtn.style.display = "flex";
         });
     }
 
     const leftSlide = () => {
         leftBtn.addEventListener("click", () => {
             moviesContainer.scrollLeft -= moviesContainer.clientWidth/4;
-            console.log(count);
-            if(count >= 0 ) {
-                count --;
-            }
+            count --;
             count===5 ? rightBtn.style.display = "none" :rightBtn.style.display = "flex";
             count===0 ? leftBtn.style.display = "none" : leftBtn.style.display = "flex";
-            });
-
-    }
-
+        });
+    };
 
     const init = () => {
         model.getMovies().then((movies) => {
