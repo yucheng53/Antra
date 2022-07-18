@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo lists</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Splash&family=Yanone+Kaffeesatz:wght@300&display=swap" rel="stylesheet">
+    <style>
+        /* 首先设置图片box的区域，将图片重叠在一起  */
+        header {
+            width: 25%;
+            position: relative;
+            overflow: hidden;
+        }
+        .box {
+            width: 100%;
+            height: 600px;
+        }
+        .box img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            transform: translateX(0);
+            z-index: 1;
+        }
+        .box img:first-child {
+            z-index: 10;
+        }
+        
+        /* 数字序列按钮 */
+        .buttons {
+            position: absolute;
+            right: 10%;
+            bottom: 5%;
+            display: flex;
+            z-index: 100;
+        }
+    
+        .buttons div {
+            width: 30px;
+            height: 30px;
+            background-color: #aaa;
+            border: 1px solid #aaa;
+            text-align: center;
+            margin: 10px;
+            cursor: pointer;
+            opacity: .7;
+            border-radius: 15px;
+            line-height: 30px;
+        }
+    
+        .buttons div.active {
+            background-color: white;
+        }
+    
+        /* 左右切换按钮 */
+        .left,
+        .right {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background-color: #ccc;
+            z-index: 100;
+            top: 110px;
+            border-radius: 40px;
+            opacity: .5;
+            cursor: pointer;
+        }
+    
+        .left {
+            left: 2%;
+        }
+    
+        .right {
+            right: 2%;
+        }
+    
+        .left .arrow {
+            width: 30px;
+            height: 30px;
+            border-left: solid 5px #666;
+            border-top: solid 5px #666;
+            transform: translate(-5px, 25px) rotate(-45deg) translate(25px, 25px);
+        }
+    
+        .right .arrow {
+            width: 30px;
+            height: 30px;
+            border-left: solid 5px #666;
+            border-top: solid 5px #666;
+            transform: translate(50px, 25px) rotate(135deg) translate(25px, 25px);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="box">
+            <img src="../infinite/img1.png">
+            <img src="../infinite/img2.png">
+            <img src=../infinite/img3.png">
+            <img src="../infinite/img4.png">
+        </div>
+        <div class="buttons">
+            <div class="active">1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+        </div>
+        <div class="left">
+            <div class="arrow"></div>
+        </div>
+        <div class="right">
+            <div class="arrow"></div>
+        </div>
+    </header>
+    <script>
+    var timeout = null;
+window.onload = function () {
+    var oLeft = document.querySelector('.left');
+    var oRight = document.querySelector('.right');
+    var oButton = document.querySelector('.buttons');
+    var oButtons = document.querySelectorAll('.buttons div');
+    var oImgs = document.querySelectorAll('.box img');
+    var imgWidth = oImgs[0].width;
+    var gIndex = 0;
+    begainAnimate();
+
+    oLeft.onclick = function () {
+        clearTimeout(timeout);
+        leftMove();
+        begainAnimate();
+    };
+    oRight.onclick = function () {
+        clearTimeout(timeout);
+        rightMove();
+        begainAnimate();
+    };
+
+    oButton.onclick = function (event) {
+        clearTimeout(timeout);
+        var targetEl = event.target;
+        var nextIndex = (+targetEl.innerText) - 1;
+        console.log(nextIndex);
+        rightMove(nextIndex);
+        begainAnimate();
+    }
+ 
+    function begainAnimate() {
+        clearTimeout(timeout);
+        timeout = setTimeout(function () {
+            rightMove();
+            begainAnimate();
+        }, 3000);
+    }
+
+    function leftMove() {
+        var nextIndex = (gIndex - 1 < 0) ? oImgs.length - 1 : gIndex - 1;
+        animateSteps(nextIndex, -50);
+    }
+
+    function rightMove(nextIndex) {
+        if (nextIndex == undefined) {
+            nextIndex = (gIndex + 1 >= oImgs.length) ? 0 : gIndex + 1;
+        }
+        animateSteps(nextIndex, 50);
+    }
+
+    function animateSteps(nextIndex, timestamp) {
+        var currentImg = oImgs[gIndex];
+        var nextImg = oImgs[nextIndex];
+        nextImg.style.zIndex = 10;
+        var step = 0;
+        requestAnimationFrame(goStep);
+
+        function goStep() {
+            var moveWidth = timestamp * step++;
+            if (Math.abs(moveWidth) < imgWidth) {
+                currentImg.style.transform = `translate(${moveWidth}px)`;
+                nextImg.style.transform = `translate(${moveWidth > 0 ? (moveWidth - imgWidth) : (imgWidth + moveWidth)}px)`;
+                requestAnimationFrame(goStep);
+            } else {
+                currentImg.style.zIndex = 1;
+                currentImg.style.transform = `translate(0px)`;
+                nextImg.style.transform = `translate(0px)`;
+                oButtons[gIndex].setAttribute('class', '');
+                oButtons[nextIndex].setAttribute('class', 'active');
+                gIndex = nextIndex;
+            }
+        }
+    }
+}
+window.onclose = function () {
+    clearTimeout(timeout);
+}
+
+    </script>
+
+</body>
+</html>
